@@ -1,0 +1,15 @@
+class_name Player
+extends CharacterBody2D
+
+@export var idle_state: PlayerIdleState
+var current_state: PlayerState
+
+func _ready():
+	change_state(idle_state)
+	
+func change_state(new_state: Node):
+	if current_state:
+		pass
+	current_state = new_state
+	if current_state:
+		current_state.enter_state(self)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5anm4sqfhewq"]
+
+[ext_resource type="Script" uid="uid://c8xm1wueds2d0" path="res://scripts/state-machine/Player/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://d34tqo50fdykk" path="res://scripts/state-machine/Player/idle_state.gd" id="2_g2els"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("1_3vyb7")
+idle_state = NodePath("State/IdleState")
+
+[node name="State" type="Node" parent="."]
+
+[node name="IdleState" type="Node" parent="State"]
+script = ExtResource("2_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
