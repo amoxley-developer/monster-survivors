@@ -1,15 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5anm4sqfhewq"]
+[gd_scene load_steps=10 format=3 uid="uid://b5anm4sqfhewq"]
 
 [ext_resource type="Script" uid="uid://c8xm1wueds2d0" path="res://scripts/state-machine/Player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d34tqo50fdykk" path="res://scripts/state-machine/Player/idle_state.gd" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://dtvh01mof62rl" path="res://assets/sprites/player/Sword_Idle/Sword_Idle_full.png" id="3_qhqgy"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("idle_state")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur7pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}],
+"loop": true,
+"name": &"idle-down",
+"speed": 12.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("idle_state", "player_animation")]
 script = ExtResource("1_3vyb7")
 idle_state = NodePath("State/IdleState")
+player_animation = NodePath("PlayerAnimation")
 
 [node name="State" type="Node" parent="."]
 
 [node name="IdleState" type="Node" parent="State"]
 script = ExtResource("2_g2els")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ur7pv")
+animation = &"idle-down"
+frame = 4
+frame_progress = 0.336909
+centered = false

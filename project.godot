@@ -12,3 +12,7 @@ config_version=5
 
 config/name="Monster Survivors"
 config/features=PackedStringArray("4.4", "Forward Plus")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
