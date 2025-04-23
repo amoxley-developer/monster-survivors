@@ -14,3 +14,9 @@ func change_state(new_state: Node):
 	current_state = new_state
 	if current_state:
 		current_state.enter_state(self)
+		
+func _process(delta: float) -> void:
+	var direction = Input.get_vector('ui_up', 'ui_right', 'ui_down', 'ui_left')
+	if current_state:
+		current_state.handle_input(delta)
+	
