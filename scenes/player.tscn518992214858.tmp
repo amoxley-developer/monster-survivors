@@ -70,10 +70,10 @@ player_animation = NodePath("PlayerAnimation")
 [node name="IdleState" type="Node" parent="State" node_paths=PackedStringArray("MovingState")]
 script = ExtResource("2_g2els")
 MovingState = NodePath("../MovingState")
+idle_animation_length = null
 
-[node name="MovingState" type="Node" parent="State" node_paths=PackedStringArray("IdleState")]
+[node name="MovingState" type="Node" parent="State"]
 script = ExtResource("3_dqkch")
-IdleState = NodePath("../IdleState")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ur7pv")
