@@ -10,5 +10,5 @@ func enter_state(player_node: Player):
 func exit_state():
 	pass
 
-func handle_input(delta: float):
+func handle_process(delta: float):
 	pass

@@ -9,11 +9,12 @@ func enter_state(player_node: Player):
 	super(player_node)
 	idle_animation_timer = idle_animation_length
 
-func handle_input(_delta: float):
+func handle_process(delta: float):
 	if Input.get_vector('ui_up', 'ui_down', 'ui_left', 'ui_right'):
 		player.change_state(MovingState)
+	handle_animation_timer(delta)
 
-func _process(delta: float) -> void:
+func handle_animation_timer(delta: float) -> void:
 	if idle_animation_timer > 0:
 		idle_animation_timer -= delta
 	elif idle_animation_timer <= 0:

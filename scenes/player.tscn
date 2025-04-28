@@ -55,8 +55,9 @@ player_animation = NodePath("PlayerAnimation")
 
 [node name="State" type="Node" parent="."]
 
-[node name="IdleState" type="Node" parent="State"]
+[node name="IdleState" type="Node" parent="State" node_paths=PackedStringArray("MovingState")]
 script = ExtResource("2_g2els")
+MovingState = NodePath("../MovingState")
 
 [node name="MovingState" type="Node" parent="State"]
 script = ExtResource("3_dqkch")
