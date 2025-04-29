@@ -23,18 +23,9 @@ func handle_animation_timer(delta: float) -> void:
 		idle_animation_timer = idle_animation_length
 
 func set_sprite():
-	print('idle cardinal direction', player.cardinal_direction)
-	match player.cardinal_direction:
-		player.CardinalDirection.UP:
-			player.player_animation.play('idle-up')
-		player.CardinalDirection.DOWN:
-			player.player_animation.play('idle-down')
+	player.player_animation.play('idle-' + player.cardinal_direction)
 	player.player_animation.pause()
 	
 		
 func play_animation():
-	match player.cardinal_direction:
-		player.CardinalDirection.UP:
-			player.player_animation.play('idle-up')
-		player.CardinalDirection.DOWN:
-			player.player_animation.play('idle-down')
+	player.player_animation.play('idle-' + player.cardinal_direction)

@@ -1,12 +1,18 @@
 class_name Player
 extends CharacterBody2D
 
-enum CardinalDirection {LEFT, RIGHT, UP, DOWN}
+
+const CardinalDirections: Dictionary[String, String] =  {
+	'LEFT': 'left', 
+	'RIGHT': 'right', 
+	'UP': 'up', 
+	'DOWN': 'down'
+}
 
 @export var idle_state: PlayerIdleState
 @export var player_animation: AnimatedSprite2D
 var current_state: PlayerState
-var cardinal_direction := CardinalDirection.DOWN
+var cardinal_direction: String = CardinalDirections.get("DOWN")
 
 func _ready():
 	change_state(idle_state)
