@@ -2,15 +2,17 @@ class_name PlayerMovingState
 extends PlayerState
 
 @export var IdleState: PlayerIdleState
+@export var DashState: PlayerDashState
 
 func enter_state(player_node: Player):
 	super(player_node)
-	
 
 func handle_process(delta: float):
 	var direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
 	if direction == Vector2.ZERO:
 		player.change_state(IdleState)
+	elif Input.is_action_pressed('dash'):
+		player.change_state(DashState)
 	else:
 		handle_movement(direction, delta)
 		play_animation()

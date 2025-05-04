@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c0kfctafaqowy" path="res://scripts/state-machine/Player/MovingState.gd" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://dtvh01mof62rl" path="res://assets/sprites/player/Sword_Idle/Sword_Idle_full.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://dl6osqinbqlvr" path="res://scripts/state-machine/Player/DashState.gd" id="4_tuyoq"]
-[ext_resource type="Texture2D" uid="uid://nfbrmhwjx3sa" path="res://assets/sprites/player/Sword_Walk/Sword_Walk_full.png" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("3_qhqgy")
