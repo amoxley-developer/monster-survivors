@@ -10,6 +10,7 @@ func enter_state(player_node: Player):
 
 func handle_process(delta: float):
 	var direction = Input.get_vector('left', 'right', 'up', 'down')
+	player.last_direction = direction
 	if Input.is_action_pressed("dash"):
 		player.change_state(DashState)
 	elif direction == Vector2.ZERO:
