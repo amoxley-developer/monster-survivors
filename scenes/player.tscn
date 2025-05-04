@@ -186,7 +186,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idle-down",
-"speed": 20.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -204,9 +204,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f1ej7")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle-left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -224,9 +224,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4r5pv")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle-right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -234,7 +234,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idle-up",
-"speed": 20.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -257,7 +257,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -280,7 +280,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -303,7 +303,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -326,13 +326,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-up",
-"speed": 5.0
+"speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("idle_state", "player_animation")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "PlayerAnimation")]
 script = ExtResource("1_3vyb7")
-idle_state = NodePath("State/IdleState")
-player_animation = NodePath("PlayerAnimation")
+IdleState = NodePath("State/IdleState")
+PlayerAnimation = NodePath("PlayerAnimation")
+walk_speed = 40
 
 [node name="State" type="Node" parent="."]
 
@@ -347,4 +348,5 @@ IdleState = NodePath("../IdleState")
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ur7pv")
 animation = &"walk-right"
+frame_progress = 0.349329
 centered = false

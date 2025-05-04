@@ -1,7 +1,6 @@
 class_name PlayerMovingState
 extends PlayerState
 
-@export var SPEED := 25
 @export var IdleState: PlayerIdleState
 
 func enter_state(player_node: Player):
@@ -17,7 +16,7 @@ func handle_process(delta: float):
 		play_animation()
 
 func handle_movement(direction: Vector2, delta: float):
-	player.velocity = direction * SPEED * delta
+	player.velocity = direction * player.walk_speed * delta
 	# Player direction handled like this so it will assign up or down direction when moving diagonally
 	var player_direction := '' 
 	if abs(player.velocity.y) > 0:
@@ -35,4 +34,4 @@ func handle_movement(direction: Vector2, delta: float):
 	player.move_and_collide(player.velocity)
 
 func play_animation():
-	player.player_animation.play('walk-' + player.cardinal_direction)
+	player.PlayerAnimation.play('walk-' + player.cardinal_direction)

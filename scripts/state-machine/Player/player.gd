@@ -9,23 +9,24 @@ const CardinalDirections: Dictionary[String, String] =  {
 	'DOWN': 'down'
 }
 
-@export var idle_state: PlayerIdleState
-@export var player_animation: AnimatedSprite2D
-var current_state: PlayerState
+@export var IdleState: PlayerIdleState
+@export var PlayerAnimation: AnimatedSprite2D
+@export var walk_speed := 25
+var CurrentState: PlayerState
 var cardinal_direction: String = CardinalDirections.get("DOWN")
 
 func _ready():
-	change_state(idle_state)
+	change_state(IdleState)
 	
 func change_state(new_state: Node):
-	if current_state:
+	if CurrentState:
 		pass
-	current_state = new_state
-	if current_state:
-		current_state.enter_state(self)
+	CurrentState = new_state
+	if CurrentState:
+		CurrentState.enter_state(self)
 		
 func _process(delta: float) -> void:
 	var direction = Input.get_vector('ui_up', 'ui_right', 'ui_down', 'ui_left')
-	if current_state:
-		current_state.handle_process(delta)
+	if CurrentState:
+		CurrentState.handle_process(delta)
 	
