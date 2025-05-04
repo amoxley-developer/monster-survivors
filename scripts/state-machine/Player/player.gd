@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-
 const CardinalDirections: Dictionary[String, String] =  {
 	'LEFT': 'left', 
 	'RIGHT': 'right', 
@@ -26,7 +25,6 @@ func change_state(new_state: Node):
 		CurrentState.enter_state(self)
 		
 func _process(delta: float) -> void:
-	var direction = Input.get_vector('ui_up', 'ui_right', 'ui_down', 'ui_left')
 	if CurrentState:
 		CurrentState.handle_process(delta)
 	

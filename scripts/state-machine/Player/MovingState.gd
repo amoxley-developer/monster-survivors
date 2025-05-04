@@ -8,7 +8,7 @@ func enter_state(player_node: Player):
 	
 
 func handle_process(delta: float):
-	var direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
+	var direction = Input.get_vector('left', 'right', 'up', 'down')
 	if direction == Vector2.ZERO:
 		player.change_state(IdleState)
 	else:

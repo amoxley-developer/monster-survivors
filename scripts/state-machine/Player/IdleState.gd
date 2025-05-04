@@ -11,7 +11,7 @@ func enter_state(player_node: Player):
 	set_sprite()
 
 func handle_process(delta: float):
-	if Input.get_vector('ui_up', 'ui_down', 'ui_left', 'ui_right'):
+	if Input.get_vector('up', 'down', 'left', 'right'):
 		player.change_state(MovingState)
 	handle_animation_timer(delta)
 
