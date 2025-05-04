@@ -342,12 +342,15 @@ walk_speed = 40
 script = ExtResource("2_g2els")
 MovingState = NodePath("../MovingState")
 
-[node name="MovingState" type="Node" parent="State" node_paths=PackedStringArray("IdleState")]
+[node name="MovingState" type="Node" parent="State" node_paths=PackedStringArray("IdleState", "DashState")]
 script = ExtResource("3_dqkch")
 IdleState = NodePath("../IdleState")
+DashState = NodePath("../DashState")
 
-[node name="DashState" type="Node" parent="State"]
+[node name="DashState" type="Node" parent="State" node_paths=PackedStringArray("IdleState", "MoveState")]
 script = ExtResource("4_tuyoq")
+IdleState = NodePath("../IdleState")
+MoveState = NodePath("../MovingState")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ur7pv")
