@@ -10,14 +10,14 @@ func enter_state(player_node: Player):
 
 func handle_process(delta: float):
 	var direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
-	handle_movement(direction, delta)
-	handle_animation()
+	if direction == Vector2.ZERO:
+		player.change_state(IdleState)
+	else:
+		handle_movement(direction, delta)
+		play_animation()
 
 func handle_movement(direction: Vector2, delta: float):
 	player.velocity = direction * SPEED * delta
-	if direction == Vector2.ZERO:
-		player.change_state(IdleState)
-
 	# Player direction handled like this so it will assign up or down direction when moving diagonally
 	var player_direction := '' 
 	if abs(player.velocity.y) > 0:
@@ -34,5 +34,5 @@ func handle_movement(direction: Vector2, delta: float):
 
 	player.move_and_collide(player.velocity)
 
-func handle_animation():
-	pass
+func play_animation():
+	player.player_animation.play('walk-' + player.cardinal_direction)

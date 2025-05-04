@@ -25,7 +25,6 @@ func handle_animation_timer(delta: float) -> void:
 func set_sprite():
 	player.player_animation.play('idle-' + player.cardinal_direction)
 	player.player_animation.pause()
-	
-		
+
 func play_animation():
 	player.player_animation.play('idle-' + player.cardinal_direction)
