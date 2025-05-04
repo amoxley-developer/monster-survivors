@@ -1,7 +1,6 @@
 class_name PlayerState
 extends Node
 
-
 var player: Player
 
 func enter_state(player_node: Player):
