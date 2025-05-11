@@ -7,11 +7,13 @@ extends PlayerState
 @export var dash_time_length := .325
 var dash_time: float
 var last_dash_time: float
+var direction: Vector2
 
 func enter_state(player_node: Player):
 	super(player_node)
 	last_dash_time = dash_time_length
 	dash_time = dash_time_length
+	set_direction()
 
 func handle_process(delta: float):
 	if dash_time <= 0:
@@ -26,13 +28,29 @@ func handle_movement(delta: float):
 	var elapsed_dash_time := last_dash_time - dash_time
 	var dash_distance = (elapsed_dash_time/dash_time_length) * player.total_dash_distance
 	last_dash_time = dash_time
-	player.velocity = player.last_direction * dash_distance
+	player.velocity = direction * dash_distance
 	player.move_and_collide(player.velocity)
 	
 
 func exit_state():
-	var direction = Input.get_vector('left', 'right', 'up', 'down')
-	if direction == Vector2.ZERO:
+	var input_direction = Input.get_vector('left', 'right', 'up', 'down')
+	if input_direction == Vector2.ZERO:
 		player.change_state(IdleState)
 	else: 
 		player.change_state(MoveState)
+
+func set_direction():
+	var input_direction = Input.get_vector('left', 'right', 'up', 'down')
+	if input_direction != Vector2.ZERO:
+		direction = input_direction
+		return
+	match player.cardinal_direction:
+		player.CardinalDirections.DOWN:
+			direction = Vector2.DOWN
+		player.CardinalDirections.UP:
+			direction = Vector2.UP
+		player.CardinalDirections.LEFT:
+			direction = Vector2.LEFT
+		player.CardinalDirections.RIGHT:
+			direction = Vector2.RIGHT
+	

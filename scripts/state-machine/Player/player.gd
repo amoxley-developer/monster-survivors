@@ -14,7 +14,6 @@ const CardinalDirections: Dictionary[String, String] =  {
 @export var total_dash_distance := 100
 var CurrentState: PlayerState
 var cardinal_direction: String = CardinalDirections.get("DOWN")
-var last_direction: Vector2
 
 func _ready():
 	change_state(IdleState)

@@ -2,6 +2,7 @@ class_name PlayerIdleState
 extends PlayerState
 
 @export var MovingState: PlayerMovingState
+@export var DashState: PlayerDashState
 @export var idle_animation_length := 3.0
 var idle_animation_timer: float
 
@@ -13,6 +14,10 @@ func enter_state(player_node: Player):
 func handle_process(delta: float):
 	if Input.get_vector('up', 'down', 'left', 'right'):
 		player.change_state(MovingState)
+		return
+	if Input.is_action_pressed("dash"):
+		player.change_state(DashState)
+		return
 	handle_animation_timer(delta)
 
 func handle_animation_timer(delta: float) -> void:
