@@ -1,9 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://b5anm4sqfhewq"]
+[gd_scene load_steps=48 format=3 uid="uid://b5anm4sqfhewq"]
 
-[ext_resource type="Script" uid="uid://c8xm1wueds2d0" path="res://scripts/state-machine/Player/Player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://c8xm1wueds2d0" path="res://scripts/state-machine/Player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d34tqo50fdykk" path="res://scripts/state-machine/Player/IdleState.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://c0kfctafaqowy" path="res://scripts/state-machine/Player/MovingState.gd" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://dtvh01mof62rl" path="res://assets/sprites/player/Sword_Idle/Sword_Idle_full.png" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://bi0w1o7vl6wl7" path="res://scripts/state-machine/Player/DashState.gd" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://nfbrmhwjx3sa" path="res://assets/sprites/player/Sword_Walk/Sword_Walk_full.png" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
@@ -337,13 +338,20 @@ walk_speed = 40
 
 [node name="State" type="Node" parent="."]
 
-[node name="IdleState" type="Node" parent="State" node_paths=PackedStringArray("MovingState")]
+[node name="IdleState" type="Node" parent="State" node_paths=PackedStringArray("MovingState", "DashState")]
 script = ExtResource("2_g2els")
 MovingState = NodePath("../MovingState")
+DashState = NodePath("../DashState")
 
-[node name="MovingState" type="Node" parent="State" node_paths=PackedStringArray("IdleState")]
+[node name="MovingState" type="Node" parent="State" node_paths=PackedStringArray("IdleState", "DashState")]
 script = ExtResource("3_dqkch")
 IdleState = NodePath("../IdleState")
+DashState = NodePath("../DashState")
+
+[node name="DashState" type="Node" parent="State" node_paths=PackedStringArray("IdleState", "MoveState")]
+script = ExtResource("4_tuyoq")
+IdleState = NodePath("../IdleState")
+MoveState = NodePath("../MovingState")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ur7pv")
