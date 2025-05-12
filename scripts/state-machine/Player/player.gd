@@ -2,14 +2,14 @@ class_name Player
 extends CharacterBody2D
 
 const CardinalDirections: Dictionary[String, String] =  {
-	'LEFT': 'left', 
-	'RIGHT': 'right', 
-	'UP': 'up', 
-	'DOWN': 'down',
-	'UP_LEFT': 'up-left',
-	'UP_RIGHT': 'up-right',
-	'DOWN_LEFT': 'down-left',
-	'DOWN_RIGHT': 'down-right'
+	'Left': 'left', 
+	'Right': 'right', 
+	'Up': 'up', 
+	'Down': 'down',
+	'UpLeft': 'up-left',
+	'UpRight': 'up-right',
+	'DownLeft': 'down-left',
+	'DownRight': 'down-right'
 }
 
 @export var IdleState: PlayerIdleState
@@ -20,7 +20,7 @@ const CardinalDirections: Dictionary[String, String] =  {
 @export var can_player_dash := true
 
 var CurrentState: PlayerState
-var cardinal_direction: String = CardinalDirections.get("DOWN")
+var cardinal_direction: String = CardinalDirections.get("Down")
 
 func _ready():
 	change_state(IdleState)

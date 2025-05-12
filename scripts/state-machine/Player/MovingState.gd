@@ -20,21 +20,41 @@ func handle_process(delta: float):
 func handle_movement(direction: Vector2, delta: float):
 	player.velocity = direction * player.walk_speed * delta
 
-	# Player direction handled like this so it will assign up or down direction when moving diagonally
-	var player_direction := '' 
+	var vertical_direction := '' 
+	var horizontal_direction := ''
 	if abs(player.velocity.y) > 0:
 		if player.velocity.y > 0:
-			player_direction = "DOWN"
+			vertical_direction = "Down"
 		else:
-			player_direction = "UP"
-	else: 
+			vertical_direction = "Up"
+	if abs(player.velocity.x) > 0: 
 		if player.velocity.x > 0:
-			player_direction = "RIGHT"
+			horizontal_direction = "Right"
 		else:
-			player_direction = "LEFT"
+			horizontal_direction = "Left"
+	var player_direction := vertical_direction + horizontal_direction
 	player.cardinal_direction = player.CardinalDirections.get(player_direction)
 
 	player.move_and_collide(player.velocity)
 
 func play_animation():
-	player.PlayerAnimation.play('walk-' + player.cardinal_direction)
+	var player_direction := ''
+	match player.cardinal_direction:
+		player.CardinalDirections.Down:
+			player_direction = 'down'
+		player.CardinalDirections.DownLeft:
+			player_direction = 'down'
+		player.CardinalDirections.DownRight:
+			player_direction = 'down'
+		player.CardinalDirections.Up:
+			player_direction = 'up'
+		player.CardinalDirections.UpLeft:
+			player_direction = 'up'
+		player.CardinalDirections.UpRight:
+			player_direction = 'up'
+		player.CardinalDirections.Left:
+			player_direction = 'left'
+		player.CardinalDirections.Right:
+			player_direction = 'right'
+		
+	player.PlayerAnimation.play('walk-' + player_direction)
