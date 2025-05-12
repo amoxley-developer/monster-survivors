@@ -15,7 +15,7 @@ func handle_process(delta: float):
 	if Input.get_vector('up', 'down', 'left', 'right'):
 		player.change_state(MovingState)
 		return
-	if Input.is_action_pressed("dash"):
+	if Input.is_action_pressed("dash") and player.can_player_dash:
 		player.change_state(DashState)
 		return
 	handle_animation_timer(delta)

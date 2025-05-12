@@ -33,6 +33,8 @@ func handle_movement(delta: float):
 	
 
 func exit_state():
+	player.can_player_dash = false
+	player.start_dash_delay_timer()
 	var input_direction = Input.get_vector('left', 'right', 'up', 'down')
 	if input_direction == Vector2.ZERO:
 		player.change_state(IdleState)
