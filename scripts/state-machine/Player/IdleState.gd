@@ -28,7 +28,7 @@ func handle_animation_timer(delta: float) -> void:
 		idle_animation_timer = idle_animation_length
 
 func set_sprite():
-	var animation_direction = get_animation_direction()
+	var animation_direction := get_animation_direction()
 	player.PlayerAnimation.play('idle-' + animation_direction)
 	player.PlayerAnimation.pause()
 

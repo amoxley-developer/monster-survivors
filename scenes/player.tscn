@@ -601,5 +601,5 @@ MoveState = NodePath("../MovingState")
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ur7pv")
 animation = &"dash-down"
-frame_progress = 0.536506
+frame_progress = 0.64046
 centered = false
