@@ -38,23 +38,6 @@ func handle_movement(direction: Vector2, delta: float):
 	player.move_and_collide(player.velocity)
 
 func play_animation():
-	var player_direction := ''
-	match player.cardinal_direction:
-		player.CardinalDirections.Down:
-			player_direction = 'down'
-		player.CardinalDirections.DownLeft:
-			player_direction = 'down'
-		player.CardinalDirections.DownRight:
-			player_direction = 'down'
-		player.CardinalDirections.Up:
-			player_direction = 'up'
-		player.CardinalDirections.UpLeft:
-			player_direction = 'up'
-		player.CardinalDirections.UpRight:
-			player_direction = 'up'
-		player.CardinalDirections.Left:
-			player_direction = 'left'
-		player.CardinalDirections.Right:
-			player_direction = 'right'
-		
+	var player_direction := get_animation_direction()
+
 	player.PlayerAnimation.play('walk-' + player_direction)
