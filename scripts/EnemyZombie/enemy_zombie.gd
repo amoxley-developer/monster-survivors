@@ -1,0 +1,2 @@
+class_name EnemyZombie
+extends CharacterBody2D

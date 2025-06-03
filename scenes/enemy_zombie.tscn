@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://be6ux0b4nxsic"]
+
+[ext_resource type="Script" uid="uid://dtrkdm331c2uk" path="res://scripts/EnemyZombie/enemy_zombie.gd" id="1_l16ls"]
+
+[node name="EnemyZombie" type="CharacterBody2D"]
+script = ExtResource("1_l16ls")
+
+[node name="state" type="Node" parent="."]
+
+[node name="MoveState" type="Node" parent="state"]
