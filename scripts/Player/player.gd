@@ -26,8 +26,6 @@ func _ready():
 	change_state(IdleState)
 	
 func change_state(new_state: Node):
-	if CurrentState:
-		pass
 	CurrentState = new_state
 	if CurrentState:
 		CurrentState.enter_state(self)
