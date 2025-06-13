@@ -1,9 +1,9 @@
-class_name EnemyZombie
+class_name EnemyPossum
 extends CharacterBody2D
 
-var CurrentState: EnemyZombieState
+var CurrentState: EnemyPossumState
 
-func change_state(new_state: EnemyZombieState):
+func change_state(new_state: EnemyPossumState):
 	CurrentState = new_state
 	if CurrentState:
 		CurrentState.enter_state(self)
