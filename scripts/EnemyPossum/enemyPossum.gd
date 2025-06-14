@@ -1,6 +1,7 @@
 class_name EnemyPossum
 extends CharacterBody2D
 
+@export var player: Player
 var CurrentState: EnemyPossumState
 
 func change_state(new_state: EnemyPossumState):

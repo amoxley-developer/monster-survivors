@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpuc1e4sr5d8c"]
+[gd_scene load_steps=11 format=3 uid="uid://dpuc1e4sr5d8c"]
 
-[ext_resource type="Script" uid="uid://b0hfeka3ddvl1" path="res://scripts/EnemyPossum/enemy_possum.gd" id="1_7h0c5"]
+[ext_resource type="Script" uid="uid://b0hfeka3ddvl1" path="res://scripts/EnemyPossum/enemyPossum.gd" id="1_7h0c5"]
 [ext_resource type="Texture2D" uid="uid://hb63rrkh20jv" path="res://assets/sprites/enemies/possum/possum.png" id="2_1so66"]
+[ext_resource type="Script" uid="uid://bbjmkey2hk0hk" path="res://scripts/EnemyPossum/state-machine/EnemyPossumMoveState.gd" id="2_mr1vx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mr1vx"]
 atlas = ExtResource("2_1so66")
@@ -57,6 +58,9 @@ animations = [{
 script = ExtResource("1_7h0c5")
 
 [node name="EnemyPossumState" type="Node" parent="."]
+
+[node name="MoveState" type="Node" parent="EnemyPossumState"]
+script = ExtResource("2_mr1vx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pibf0")
