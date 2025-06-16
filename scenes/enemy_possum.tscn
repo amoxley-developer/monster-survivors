@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpuc1e4sr5d8c"]
+
+[ext_resource type="Script" uid="uid://b0hfeka3ddvl1" path="res://scripts/EnemyPossum/enemyPossum.gd" id="1_7h0c5"]
+[ext_resource type="Texture2D" uid="uid://hb63rrkh20jv" path="res://assets/sprites/enemies/possum/possum.png" id="2_1so66"]
+[ext_resource type="Script" uid="uid://bbjmkey2hk0hk" path="res://scripts/EnemyPossum/state-machine/EnemyPossumMoveState.gd" id="2_mr1vx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr1vx"]
+atlas = ExtResource("2_1so66")
+region = Rect2(0, 0, 36, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txp0y"]
+atlas = ExtResource("2_1so66")
+region = Rect2(36, 0, 36, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymhqw"]
+atlas = ExtResource("2_1so66")
+region = Rect2(72, 0, 36, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mop1k"]
+atlas = ExtResource("2_1so66")
+region = Rect2(108, 0, 36, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df4gu"]
+atlas = ExtResource("2_1so66")
+region = Rect2(144, 0, 36, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrdgw"]
+atlas = ExtResource("2_1so66")
+region = Rect2(180, 0, 36, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pibf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr1vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txp0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymhqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mop1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df4gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrdgw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="EnemyPossum" type="CharacterBody2D" node_paths=PackedStringArray("enemyPossumMoveState")]
+script = ExtResource("1_7h0c5")
+enemyPossumMoveState = NodePath("EnemyPossumState/MoveState")
+
+[node name="EnemyPossumState" type="Node" parent="."]
+
+[node name="MoveState" type="Node" parent="EnemyPossumState" node_paths=PackedStringArray("animation")]
+script = ExtResource("2_mr1vx")
+animation = NodePath("../../EnemyPossumAnimation")
+
+[node name="EnemyPossumAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pibf0")
+animation = &"walk"

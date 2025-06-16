@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1kiqgxyni8ko"]
+
+[ext_resource type="Script" uid="uid://h3dyc1i6ob8i" path="res://scripts/Level/Level.gd" id="1_w8frs"]
+[ext_resource type="Script" uid="uid://wlcc1w1nix1r" path="res://scripts/Level/StateMachine/LevelPlayingState.gd" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://b5anm4sqfhewq" path="res://scenes/player.tscn" id="4_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://dpuc1e4sr5d8c" path="res://scenes/enemy_possum.tscn" id="5_2r41h"]
+[ext_resource type="Script" uid="uid://cswar17uqv02o" path="res://scripts/Level/StateMachine/LevelSetupState.gd" id="5_ppgk2"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("SetupState")]
+script = ExtResource("1_w8frs")
+SetupState = NodePath("LevelState/LevelSetupState")
+
+[node name="LevelState" type="Node" parent="."]
+
+[node name="LevelPlayingState" type="Node" parent="LevelState"]
+script = ExtResource("4_mx8sn")
+
+[node name="LevelSetupState" type="Node" parent="LevelState"]
+script = ExtResource("5_ppgk2")
+
+[node name="Player" parent="." instance=ExtResource("4_ppgk2")]
+position = Vector2(291, 77)
+
+[node name="EnemyPossum" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_2r41h")]
+position = Vector2(641, 78)
+player = NodePath("../Player")

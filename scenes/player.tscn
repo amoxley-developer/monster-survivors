@@ -602,4 +602,3 @@ MoveState = NodePath("../MovingState")
 sprite_frames = SubResource("SpriteFrames_ur7pv")
 animation = &"dash-down"
 frame_progress = 0.64046
-centered = false
