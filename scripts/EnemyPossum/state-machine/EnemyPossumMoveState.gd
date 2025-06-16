@@ -12,12 +12,11 @@ func handle_process(delta: float):
 	var direction = (player_position - enemy_possum.position).normalized();
 
 	enemy_possum.velocity = direction * enemy_possum.move_speed * delta
-	var collision = enemy_possum.move_and_collide(enemy_possum.velocity)
-	if not collision:
-		if direction.x > 0:
-			animation.flip_h = true
-		else:
-			animation.flip_h = false
+	enemy_possum.move_and_collide(enemy_possum.velocity)
+	if direction.x > 0:
+		animation.flip_h = true
+	else:
+		animation.flip_h = false
 
 func exit_state():
 	animation.pause()
