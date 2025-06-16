@@ -54,15 +54,16 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="EnemyPossum" type="CharacterBody2D"]
+[node name="EnemyPossum" type="CharacterBody2D" node_paths=PackedStringArray("enemyPossumMoveState")]
 script = ExtResource("1_7h0c5")
+enemyPossumMoveState = NodePath("EnemyPossumState/MoveState")
 
 [node name="EnemyPossumState" type="Node" parent="."]
 
-[node name="MoveState" type="Node" parent="EnemyPossumState"]
+[node name="MoveState" type="Node" parent="EnemyPossumState" node_paths=PackedStringArray("animation")]
 script = ExtResource("2_mr1vx")
+animation = NodePath("../../EnemyPossumAnimation")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="EnemyPossumAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pibf0")
 animation = &"walk"
-centered = false

@@ -19,7 +19,8 @@ script = ExtResource("4_mx8sn")
 script = ExtResource("5_ppgk2")
 
 [node name="Player" parent="." instance=ExtResource("4_ppgk2")]
+position = Vector2(291, 77)
 
 [node name="EnemyPossum" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_2r41h")]
-position = Vector2(492, 2)
+position = Vector2(641, 78)
 player = NodePath("../Player")
