@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://b5anm4sqfhewq"]
+[gd_scene load_steps=82 format=3 uid="uid://b5anm4sqfhewq"]
 
 [ext_resource type="Script" uid="uid://c8xm1wueds2d0" path="res://scripts/Player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d34tqo50fdykk" path="res://scripts/Player/state-machine/IdleState.gd" id="2_g2els"]
@@ -575,6 +575,10 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjrip"]
+radius = 5.0
+height = 18.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "PlayerAnimation")]
 script = ExtResource("1_3vyb7")
 IdleState = NodePath("State/IdleState")
@@ -602,3 +606,6 @@ MoveState = NodePath("../MovingState")
 sprite_frames = SubResource("SpriteFrames_ur7pv")
 animation = &"dash-down"
 frame_progress = 0.64046
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fjrip")
