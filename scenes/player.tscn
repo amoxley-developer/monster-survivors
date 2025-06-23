@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://b5anm4sqfhewq"]
+[gd_scene load_steps=91 format=3 uid="uid://b5anm4sqfhewq"]
 
 [ext_resource type="Script" uid="uid://c8xm1wueds2d0" path="res://scripts/Player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d34tqo50fdykk" path="res://scripts/Player/state-machine/IdleState.gd" id="2_g2els"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://bi0w1o7vl6wl7" path="res://scripts/Player/state-machine/DashState.gd" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dtlvdyxkcy043" path="res://assets/sprites/player/Sword_Run/Sword_Run_full.png" id="5_fjrip"]
 [ext_resource type="Texture2D" uid="uid://nfbrmhwjx3sa" path="res://assets/sprites/player/Sword_Walk/Sword_Walk_full.png" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://o551lt07bmdh" path="res://scripts/Player/state-machine/DeadState.gd" id="5_smehm"]
+[ext_resource type="Texture2D" uid="uid://cr56qjggwflyw" path="res://assets/sprites/player/Sword_Death/Sword_Death_full.png" id="7_ur7pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhpqf"]
 atlas = ExtResource("5_fjrip")
@@ -135,6 +137,34 @@ region = Rect2(384, 192, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwp2n"]
 atlas = ExtResource("5_fjrip")
 region = Rect2(448, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yhus"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlll7"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk6i7"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c3st"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1da1t"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p21yu"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irpag"]
+atlas = ExtResource("7_ur7pv")
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("3_qhqgy")
@@ -416,6 +446,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0yhus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlll7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk6i7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c3st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1da1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p21yu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irpag")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dqkch")
 }, {
 "duration": 1.0,
@@ -579,9 +635,10 @@ animations = [{
 radius = 5.0
 height = 18.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "PlayerAnimation")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "DeadState", "PlayerAnimation")]
 script = ExtResource("1_3vyb7")
 IdleState = NodePath("State/IdleState")
+DeadState = NodePath("State/DeadState")
 PlayerAnimation = NodePath("PlayerAnimation")
 walk_speed = 40
 
@@ -602,10 +659,14 @@ script = ExtResource("4_tuyoq")
 IdleState = NodePath("../IdleState")
 MoveState = NodePath("../MovingState")
 
+[node name="DeadState" type="Node" parent="State"]
+script = ExtResource("5_smehm")
+
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ur7pv")
-animation = &"dash-down"
-frame_progress = 0.64046
+animation = &"dead"
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fjrip")
