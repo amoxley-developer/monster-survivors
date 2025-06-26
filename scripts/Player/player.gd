@@ -33,8 +33,7 @@ func change_state(new_state: PlayerState):
 	if CurrentState:
 		CurrentState.enter_state(self)
 		
-func _process(delta: float) -> void: 
-	take_damage(20*delta)
+func _process(delta: float) -> void:
 	if CurrentState:
 		CurrentState.handle_process(delta)
 
