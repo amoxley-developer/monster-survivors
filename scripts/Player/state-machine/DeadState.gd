@@ -18,3 +18,6 @@ func handle_process(delta: float) -> void:
 
 func handle_animation() -> void:
 	player.PlayerAnimation.play('dead')
+
+func exit_state() -> void:
+	death_animation_delay = 1.0
