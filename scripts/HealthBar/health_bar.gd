@@ -1,0 +1,13 @@
+class_name HealthBar
+extends ProgressBar
+
+var health := 0.0 : set = _set_health
+
+func _set_health(new_health: float):
+	var prev_health = health
+	health = min(max_value, new_health)
+	value = health
+
+func init_health(start_health):
+	max_value = start_health
+	value = start_health

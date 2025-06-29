@@ -15,6 +15,7 @@ const CardinalDirections: Dictionary[String, String] =  {
 @export var IdleState: PlayerIdleState
 @export var DeadState: PlayerDeadState
 @export var PlayerAnimation: AnimatedSprite2D
+@export var HealthBarScene: HealthBar
 @export var walk_speed := 25
 @export var total_dash_distance := 100
 @export var dash_delay_length := 0.1
@@ -27,6 +28,7 @@ var cardinal_direction: String = CardinalDirections.get("Down")
 
 func _ready():
 	change_state(IdleState)
+	HealthBarScene.init_health(health)
 
 func change_state(new_state: PlayerState):
 	CurrentState = new_state
@@ -48,3 +50,4 @@ func take_damage(amount: float):
 		change_state(DeadState)
 	else:
 		health -= amount
+		HealthBarScene._set_health(health)
