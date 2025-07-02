@@ -28,7 +28,7 @@ var cardinal_direction: String = CardinalDirections.get("Down")
 
 func _ready():
 	change_state(IdleState)
-	HealthBarScene.init_health(health)
+	HealthBarScene.init_health(health, Color.FOREST_GREEN)
 
 func change_state(new_state: PlayerState):
 	CurrentState = new_state
