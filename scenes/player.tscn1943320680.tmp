@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://b5anm4sqfhewq"]
+[gd_scene load_steps=91 format=3 uid="uid://b5anm4sqfhewq"]
 
 [ext_resource type="Script" uid="uid://c8xm1wueds2d0" path="res://scripts/Player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://d34tqo50fdykk" path="res://scripts/Player/state-machine/IdleState.gd" id="2_g2els"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://nfbrmhwjx3sa" path="res://assets/sprites/player/Sword_Walk/Sword_Walk_full.png" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://o551lt07bmdh" path="res://scripts/Player/state-machine/DeadState.gd" id="5_smehm"]
 [ext_resource type="Texture2D" uid="uid://cr56qjggwflyw" path="res://assets/sprites/player/Sword_Death/Sword_Death_full.png" id="7_ur7pv"]
-[ext_resource type="PackedScene" uid="uid://dapawspw3tafc" path="res://scenes/health_bar.tscn" id="10_y4r1p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhpqf"]
 atlas = ExtResource("5_fjrip")
@@ -636,12 +635,11 @@ animations = [{
 radius = 5.0
 height = 18.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "DeadState", "PlayerAnimation", "HealthBarScene")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "DeadState", "PlayerAnimation")]
 script = ExtResource("1_3vyb7")
 IdleState = NodePath("State/IdleState")
 DeadState = NodePath("State/DeadState")
 PlayerAnimation = NodePath("PlayerAnimation")
-HealthBarScene = NodePath("HealthBar")
 walk_speed = 40
 
 [node name="State" type="Node" parent="."]
@@ -672,9 +670,3 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fjrip")
-
-[node name="HealthBar" parent="." instance=ExtResource("10_y4r1p")]
-offset_left = -20.0
-offset_top = 17.0
-offset_right = 20.0
-offset_bottom = 23.0
