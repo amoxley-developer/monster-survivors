@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpuc1e4sr5d8c"]
+[gd_scene load_steps=16 format=3 uid="uid://dpuc1e4sr5d8c"]
 
 [ext_resource type="Script" uid="uid://b0hfeka3ddvl1" path="res://scripts/EnemyPossum/enemyPossum.gd" id="1_7h0c5"]
 [ext_resource type="Texture2D" uid="uid://hb63rrkh20jv" path="res://assets/sprites/enemies/possum/possum.png" id="2_1so66"]
 [ext_resource type="Script" uid="uid://bbjmkey2hk0hk" path="res://scripts/EnemyPossum/state-machine/EnemyPossumMoveState.gd" id="2_mr1vx"]
+[ext_resource type="Script" uid="uid://bks06e08yjeo0" path="res://scripts/EnemyPossum/state-machine/EnemyPossumDeadState.gd" id="3_ymhqw"]
 [ext_resource type="Script" uid="uid://bcreehc7wvkg8" path="res://scripts/HealthBar/health_bar.gd" id="4_txp0y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mr1vx"]
@@ -74,15 +75,20 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 anti_aliasing = false
 
-[node name="EnemyPossum" type="CharacterBody2D" node_paths=PackedStringArray("enemyPossumMoveState", "healthBarScene")]
+[node name="EnemyPossum" type="CharacterBody2D" node_paths=PackedStringArray("enemyPossumMoveState", "enemyPossumDeadState", "healthBarScene")]
 script = ExtResource("1_7h0c5")
 enemyPossumMoveState = NodePath("EnemyPossumState/MoveState")
+enemyPossumDeadState = NodePath("EnemyPossumState/DeadState")
 healthBarScene = NodePath("HealthBar")
 
 [node name="EnemyPossumState" type="Node" parent="."]
 
 [node name="MoveState" type="Node" parent="EnemyPossumState" node_paths=PackedStringArray("animation")]
 script = ExtResource("2_mr1vx")
+animation = NodePath("../../EnemyPossumAnimation")
+
+[node name="DeadState" type="Node" parent="EnemyPossumState" node_paths=PackedStringArray("animation")]
+script = ExtResource("3_ymhqw")
 animation = NodePath("../../EnemyPossumAnimation")
 
 [node name="EnemyPossumAnimation" type="AnimatedSprite2D" parent="."]
