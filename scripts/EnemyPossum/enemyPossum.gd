@@ -22,12 +22,8 @@ func change_state(new_state: EnemyPossumState):
 		currentState.enter_state(self)
 
 func _process(delta: float) -> void:
-	# remove this after finishing with testing
-	take_damage(delta * 2)
 	if currentState:
 		currentState.handle_process(delta)
-	# if currentState == enemyPossumDeadState:
-	# 	print('still processing')
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var has_player_contact = true
