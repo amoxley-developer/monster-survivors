@@ -48,6 +48,6 @@ func player_can_dash():
 func take_damage(amount: float):
 	if health <= 0 and CurrentState != DeadState:
 		change_state(DeadState)
-	else:
+	elif health > 0:
 		health -= amount
 		HealthBarScene._set_health(health)

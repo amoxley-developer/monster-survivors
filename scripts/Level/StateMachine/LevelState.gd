@@ -9,5 +9,5 @@ func enter_state(level_node: Level) -> void:
 func exit_state():
 	pass
 
-func handle_process(delta: float) -> void:
+func handle_process(_delta: float) -> void:
 	pass
