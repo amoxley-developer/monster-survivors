@@ -8,9 +8,8 @@ extends CharacterBody2D
 @export var move_speed := 20
 @export var health := 10.0
 
-var has_player_contact := false
-
 var currentState: EnemyPossumState
+var has_contact_with_player := false
 
 func _ready() -> void:
 	healthBarScene.init_health(health, Color.CRIMSON)
@@ -24,12 +23,16 @@ func change_state(new_state: EnemyPossumState):
 func _process(delta: float) -> void:
 	if currentState:
 		currentState.handle_process(delta)
+	if has_contact_with_player:
+		player.take_damage(5)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	var has_player_contact = true
+	if body == player:
+		has_contact_with_player = true
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	var has_player_contact = false
+func _on_area_2d_body_exited(body:Node2D) -> void:
+	if body == player:
+		has_contact_with_player = false
 
 func take_damage(amount: float):
 	if health <= 0 and currentState != enemyPossumDeadState:

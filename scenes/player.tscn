@@ -649,13 +649,14 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "DeadState", "PlayerAnimation", "HealthBarScene")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleState", "DeadState", "PlayerAnimation", "HealthBarScene", "dash_delay_timer", "damage_delay_timer")]
 script = ExtResource("1_3vyb7")
 IdleState = NodePath("State/IdleState")
 DeadState = NodePath("State/DeadState")
 PlayerAnimation = NodePath("PlayerAnimation")
 HealthBarScene = NodePath("HealthBar")
-walk_speed = 40
+dash_delay_timer = NodePath("DashDelayTimer")
+damage_delay_timer = NodePath("DamageDelayTimer")
 
 [node name="State" type="Node" parent="."]
 
@@ -696,3 +697,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_d2wvv")
 show_percentage = false
 script = ExtResource("10_y4r1p")
 metadata/_custom_type_script = "uid://bcreehc7wvkg8"
+
+[node name="DamageDelayTimer" type="Timer" parent="."]
+
+[node name="DashDelayTimer" type="Timer" parent="."]
