@@ -16,8 +16,9 @@ const CardinalDirections: Dictionary[String, String] =  {
 @export var DeadState: PlayerDeadState
 @export var PlayerAnimation: AnimatedSprite2D
 @export var HealthBarScene: HealthBar
-@export var walk_speed := 25
+@export var walk_speed := 40
 @export var total_dash_distance := 100
+@export var dash_delay_timer: Timer
 @export var dash_delay_length := 0.1
 # health needs to be float because delta is a float, otherwise it will round down, causing health to decrease rapidly
 @export var health := 100.0
@@ -32,7 +33,13 @@ var cardinal_direction: String = CardinalDirections.get("Down")
 func _ready():
 	change_state(IdleState)
 	HealthBarScene.init_health(health, Color.FOREST_GREEN)
+	set_dash_delay_timer()
 	set_damage_delay_timer()
+
+func set_dash_delay_timer():
+	dash_delay_timer.one_shot = true
+	dash_delay_timer.wait_time = dash_delay_length
+	dash_delay_timer.timeout.connect(player_can_dash)
 
 func set_damage_delay_timer():
 	damage_delay_timer.one_shot = true
@@ -49,7 +56,7 @@ func _process(delta: float) -> void:
 		CurrentState.handle_process(delta)
 
 func start_dash_delay_timer():
-	get_tree().create_timer(dash_delay_length).timeout.connect(player_can_dash)
+	dash_delay_timer.start()
 
 func player_can_take_damage():
 	can_take_damage = true
