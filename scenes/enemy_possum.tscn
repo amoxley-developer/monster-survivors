@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpuc1e4sr5d8c"]
+[gd_scene load_steps=16 format=3 uid="uid://dpuc1e4sr5d8c"]
 
 [ext_resource type="Script" uid="uid://b0hfeka3ddvl1" path="res://scripts/EnemyPossum/enemyPossum.gd" id="1_7h0c5"]
 [ext_resource type="Texture2D" uid="uid://hb63rrkh20jv" path="res://assets/sprites/enemies/possum/possum.png" id="2_1so66"]
 [ext_resource type="Script" uid="uid://bbjmkey2hk0hk" path="res://scripts/EnemyPossum/state-machine/EnemyPossumMoveState.gd" id="2_mr1vx"]
+[ext_resource type="Script" uid="uid://bks06e08yjeo0" path="res://scripts/EnemyPossum/state-machine/EnemyPossumDeadState.gd" id="3_ymhqw"]
+[ext_resource type="Script" uid="uid://bcreehc7wvkg8" path="res://scripts/HealthBar/health_bar.gd" id="4_txp0y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mr1vx"]
 atlas = ExtResource("2_1so66")
@@ -58,14 +60,35 @@ animations = [{
 radius = 5.0
 height = 22.0
 
-[node name="EnemyPossum" type="CharacterBody2D" node_paths=PackedStringArray("enemyPossumMoveState")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txp0y"]
+bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymhqw"]
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[node name="EnemyPossum" type="CharacterBody2D" node_paths=PackedStringArray("enemyPossumMoveState", "enemyPossumDeadState", "healthBarScene")]
 script = ExtResource("1_7h0c5")
 enemyPossumMoveState = NodePath("EnemyPossumState/MoveState")
+enemyPossumDeadState = NodePath("EnemyPossumState/DeadState")
+healthBarScene = NodePath("HealthBar")
 
 [node name="EnemyPossumState" type="Node" parent="."]
 
 [node name="MoveState" type="Node" parent="EnemyPossumState" node_paths=PackedStringArray("animation")]
 script = ExtResource("2_mr1vx")
+animation = NodePath("../../EnemyPossumAnimation")
+
+[node name="DeadState" type="Node" parent="EnemyPossumState" node_paths=PackedStringArray("animation")]
+script = ExtResource("3_ymhqw")
 animation = NodePath("../../EnemyPossumAnimation")
 
 [node name="EnemyPossumAnimation" type="AnimatedSprite2D" parent="."]
@@ -78,6 +101,18 @@ animation = &"walk"
 position = Vector2(-3, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_mr1vx")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -15.0
+offset_top = -20.0
+offset_right = 15.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_txp0y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ymhqw")
+value = 50.0
+show_percentage = false
+script = ExtResource("4_txp0y")
+metadata/_custom_type_script = "uid://bcreehc7wvkg8"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
