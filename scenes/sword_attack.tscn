@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://ufcyj6kbbqmd"]
+[gd_scene load_steps=14 format=3 uid="uid://ufcyj6kbbqmd"]
 
 [ext_resource type="Texture2D" uid="uid://ddorvoyip537e" path="res://assets/sprites/attack/sword_attack/sword_attack.png" id="1_fl0c6"]
+[ext_resource type="Script" uid="uid://b5772jpbu3i65" path="res://scripts/Attack/SwordAttack/sword_attack.gd" id="1_i5cpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5ia8"]
 size = Vector2(64, 46.7031)
@@ -77,6 +78,7 @@ animations = [{
 }]
 
 [node name="SwordAttack" type="Area2D"]
+script = ExtResource("1_i5cpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v5ia8")
